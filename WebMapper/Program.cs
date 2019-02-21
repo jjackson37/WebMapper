@@ -15,9 +15,13 @@
             IPageRetriever pageRetriever = new WebClientPageRetriever();
             var htmlCode = pageRetriever.RetrievePage(pageUrl);
 
-            // Remove all new lines and whitespace from the response
-            htmlCode = Regex.Replace(htmlCode, @"\s+", string.Empty);
-            Console.WriteLine(htmlCode);
+            // Get all URL matches from the page
+            var urlMatches = Regex.Matches(htmlCode, "href=\"(.*?)\"");
+
+            foreach (Match match in urlMatches)
+            {
+                Console.WriteLine(match.Groups[1].Value);
+            }
 
             Console.ReadKey();
         }
