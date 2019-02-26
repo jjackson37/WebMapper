@@ -6,8 +6,8 @@
     /// <summary>
     /// Page retriever class that uses the WebClient class
     /// </summary>
-    /// <seealso cref="WebMapper.PageRetrievers.IPageRetriever" />
-    public class WebClientPageRetriever : IPageRetriever
+    /// <seealso cref="IPageRetriever" />
+    internal class WebClientPageRetriever : IPageRetriever
     {
         /// <summary>
         /// Retrieves the web page.
