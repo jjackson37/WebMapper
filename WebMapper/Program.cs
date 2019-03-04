@@ -1,8 +1,10 @@
 ﻿namespace WebMapper
 {
     using System;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using WebMapper.PageRetrievers;
+    using WebMapper.WebAddressFilters;
 
     public class Program
     {
@@ -18,12 +20,19 @@
             // TODO : Move this into a class structure and use a factory (maybe config?) so we can find URL matches in different ways
             var urlMatches = Regex.Matches(htmlCode, "href=\"(.*?)\"");
 
-            // TODO : Filter URLs here with IWebAddressFilters
+            var stringUrlMatches = urlMatches.Select(m => m.Groups[1].Value).ToArray();
+
+            // TODO : Do this some nice way (Temp code)
+            var duplicateAddressFilter = new DuplicateAddressFilter();
+            var mediaFileAddressFilter = new MediaFileAddressFilter();
+
+            stringUrlMatches = duplicateAddressFilter.ExecuteFilter(stringUrlMatches);
+            stringUrlMatches = mediaFileAddressFilter.ExecuteFilter(stringUrlMatches);
 
             // Output (Temp code)
-            foreach (Match match in urlMatches)
+            foreach (string match in stringUrlMatches)
             {
-                Console.WriteLine(match.Groups[1].Value);
+                Console.WriteLine(match);
             }
 
             Console.ReadKey();
