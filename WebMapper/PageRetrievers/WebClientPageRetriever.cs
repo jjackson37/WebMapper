@@ -2,6 +2,7 @@
 {
     using System;
     using System.Net;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Page retriever class that uses the WebClient class
@@ -19,6 +20,13 @@
         public string RetrievePage(string url)
         {
             var htmlCode = string.Empty;
+
+            // If user has not supplied http or https, prepend it
+            if (!Regex.IsMatch(url, "https?://"))
+            {
+                // TODO #3 : Check health of url and fix it
+                url = "http://" + url;
+            }
 
             using (var client = new WebClient())
             {
