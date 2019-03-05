@@ -1,0 +1,9 @@
+{
+  "applicationSettings": {
+    "tldRetrievalUrl": "http://data.iana.org/TLD/tlds-alpha-by-domain.txt",
+    "tldLocalCacheDir": "C:/"
+  },
+  "testGroup": {
+    "testSetting" : "test"
+  }
+}
