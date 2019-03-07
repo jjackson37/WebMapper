@@ -55,7 +55,7 @@
                 {
                     try
                     {
-                        client.DownloadFile(url, $"{directory}/tlds-alpha-by-domain.txt");
+                        client.DownloadFile(url, $"{directory}/{url.Substring(url.LastIndexOf('/') + 1)}");
                     }
                     catch (Exception e)
                     {
